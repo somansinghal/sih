@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help | Garudyaan</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="Live public transport tracking for Tier 2 Indian cities. Track buses, trains, and autos in real-time.">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <button onclick="changeLanguage('en')" class="lang-option"><span>🇺🇸</span> English</button>
+                        <button onclick="changeLanguage('hi')" class="lang-option"><span>🇮🇳</span> हिन्दी</button>
+                        <button onclick="changeLanguage('ta')" class="lang-option"><span>🇮🇳</span> தமிழ்</button>
+                        <button onclick="changeLanguage('kn')" class="lang-option"><span>🇮🇳</span> ಕನ್ನಡ</button>
+                        <button onclick="changeLanguage('te')" class="lang-option"><span>🇮🇳</span> తెలుగు</button>
+                        <button onclick="changeLanguage('mr')" class="lang-option"><span>🇮🇳</span> मराठी</button>
+                        <button onclick="changeLanguage('gu')" class="lang-option"><span>🇮🇳</span> ગુજરાતી</button>
+                        <button onclick="changeLanguage('bn')" class="lang-option"><span>🇮🇳</span> বাংলা</button>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option"><span>☀️</span> Light</button>
+                        <button onclick="changeTheme('dark')" class="theme-option"><span>🌙</span> Dark</button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option"><span>🇮🇳</span> Tricolor</button>
+                    </div>
+                </div>
+                <div class="user-info-btn" onclick="toggleUserMenu()">
+                    <div class="user-avatar">U</div>
+                    <span>User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="user-menu" id="userMenu">
+                        <a href="userpage.html" class="user-menu-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="login.html" class="user-menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="user-menu-item"><i class="fas fa-user-plus"></i> Register</a>
+                        <div class="user-menu-divider"></div>
+                        <button class="user-menu-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-hero">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find quick answers to common questions about Garudyaan.</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-grid">
+                <div class="faq-item" id="faq-accuracy">
+                    <div class="faq-question">
+                        <h3>How accurate is the real-time tracking?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our real-time tracking system provides 99.9% accuracy with updates every 30 seconds. We use advanced GPS technology and work directly with transport authorities to ensure the most accurate data.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" id="faq-cities">
+                    <div class="faq-question">
+                        <h3>Which cities are currently supported?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We currently support 12 major Tier 2 cities including Indore, Bhopal, Nagpur, Coimbatore, Kochi, Mysore, Jaipur, Lucknow, Ahmedabad, Pune, Chennai, and Hyderabad. We're constantly expanding to more cities.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" id="faq-free">
+                    <div class="faq-question">
+                        <h3>Is the app free to use?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Garudyaan is completely free to use. We believe in making public transport accessible to everyone. Our revenue comes from partnerships with transport authorities and local businesses.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" id="faq-bug">
+                    <div class="faq-question">
+                        <h3>How can I report a bug or suggest a feature?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can report bugs or suggest features through our <a href="contact.html">contact form</a>, email us at support@garudyaan.com, or use the <a href="feedback.html">feedback page</a>. We review all suggestions and implement the most requested features.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" id="faq-mobile-app">
+                    <div class="faq-question">
+                        <h3>Do you have a mobile app?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, we offer a Progressive Web App (PWA) that works like a native app on mobile devices. You can install it from your browser and use it offline. Native mobile apps for Android and iOS are in development.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" id="faq-add-city">
+                    <div class="faq-question">
+                        <h3>How do I add my city to Garudyaan?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We're always looking to expand to new cities. If you're a transport authority or city official, please contact us at partnerships@garudyaan.com. We work closely with local governments to integrate their transport systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</a></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+    <script>
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = question.querySelector('i');
+                
+                faqItem.classList.toggle('active');
+                
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    answer.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

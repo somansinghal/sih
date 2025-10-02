@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center | Garudyaan</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="Garudyaan Help Center - Find answers and support for live public transport tracking.">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <button onclick="changeLanguage('en')" class="lang-option"><span>🇺🇸</span> English</button>
+                        <button onclick="changeLanguage('hi')" class="lang-option"><span>🇮🇳</span> हिन्दी</button>
+                        <button onclick="changeLanguage('ta')" class="lang-option"><span>🇮🇳</span> தமிழ்</button>
+                        <button onclick="changeLanguage('kn')" class="lang-option"><span>🇮🇳</span> ಕನ್ನಡ</button>
+                        <button onclick="changeLanguage('te')" class="lang-option"><span>🇮🇳</span> తెలుగు</button>
+                        <button onclick="changeLanguage('mr')" class="lang-option"><span>🇮🇳</span> मराठी</button>
+                        <button onclick="changeLanguage('gu')" class="lang-option"><span>🇮🇳</span> ગુજરાતી</button>
+                        <button onclick="changeLanguage('bn')" class="lang-option"><span>🇮🇳</span> বাংলা</button>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option"><span>☀️</span> Light</button>
+                        <button onclick="changeTheme('dark')" class="theme-option"><span>🌙</span> Dark</button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option"><span>🇮🇳</span> Tricolor</button>
+                    </div>
+                </div>
+                <div class="user-info-btn" onclick="toggleUserMenu()">
+                    <div class="user-avatar">U</div>
+                    <span>User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="user-menu" id="userMenu">
+                        <a href="userpage.html" class="user-menu-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="login.html" class="user-menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="user-menu-item"><i class="fas fa-user-plus"></i> Register</a>
+                        <div class="user-menu-divider"></div>
+                        <button class="user-menu-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Help Center Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Help Center</h1>
+            <p>How can we help you today?</p>
+            <div class="help-search-bar">
+                <input type="text" id="helpSearchInput" placeholder="Search for help articles...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Categories -->
+    <section class="help-categories-section">
+        <div class="container">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="help-categories-grid">
+                <div class="help-category-card" data-keywords="getting started track route city map basics">
+                    <div class="category-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Getting Started</h3>
+                    <p>Learn the basics of Garudyaan, from tracking your first route to selecting a city.</p>
+                    <ul>
+                        <li><a href="track.html">How to track a route</a></li>
+                        <li><a href="cities.html">Selecting your city</a></li>
+                        <li><a href="track.html">Understanding the map</a></li>
+                    </ul>
+                </div>
+                <div class="help-category-card" data-keywords="account profile favorites notifications settings register">
+                    <div class="category-icon"><i class="fas fa-user-cog"></i></div>
+                    <h3>Account & Profile</h3>
+                    <p>Manage your account, favorites, and notification settings.</p>
+                    <ul>
+                        <li><a href="register.html">Creating an account</a></li>
+                        <li><a href="userpage.html">Managing favorite routes</a></li>
+                        <li><a href="userpage.html#profile">Updating your profile</a></li>
+                        <li><a href="settings.html">Security Settings</a></li>
+                    </ul>
+                </div>
+                <div class="help-category-card" data-keywords="features themes languages sharing favorites modal">
+                    <div class="category-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Features</h3>
+                    <p>Explore advanced features like themes, languages, and route sharing.</p>
+                    <ul>
+                        <li><a href="themes_languages.html">Changing themes & languages</a></li>
+                        <li><a href="userpage.html">Using the favorites modal</a></li>
+                        <li><a href="track.html">Sharing route information</a></li>
+                    </ul>
+                </div>
+                <div class="help-category-card" data-keywords="troubleshooting issues errors map loading login register incorrect data">
+                    <div class="category-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Troubleshooting</h3>
+                    <p>Find solutions to common issues, such as map errors or incorrect data.</p>
+                    <ul>
+                        <li><a href="issue-map-loading.html">Map is not loading</a></li>
+                        <li><a href="issue-route-data.html">Route information is incorrect</a></li>
+                        <li><a href="issue-login.html">Login or registration issues</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="noResultsMessage" class="no-results-message" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No results found</h3>
+                <p>We couldn't find any articles matching your search. Try using different keywords.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular FAQs -->
+    <section class="popular-faq-section">
+        <div class="container">
+            <h2 class="section-title">Popular Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How accurate is the real-time tracking?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our real-time tracking system provides 99.9% accuracy with updates every 30 seconds. We use advanced GPS technology and work directly with transport authorities to ensure the most accurate data.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Which cities are currently supported?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We currently support over 12 major Tier 2 cities and are constantly expanding. You can see the full list on our <a href="cities.html">Cities page</a>.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is the Garudyaan app free to use?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Garudyaan is completely free for all users. We are committed to making public transport more accessible for everyone.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you have a mobile app?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Currently, we offer a Progressive Web App (PWA) that you can add to your home screen for an app-like experience. Native Android and iOS apps are in development.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all-faq">
+                <a href="help.html" class="btn btn-secondary">View All FAQs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Support -->
+    <section class="contact-support-section">
+        <div class="container">
+            <div class="contact-support-content">
+                <div class="contact-support-icon"><i class="fas fa-life-ring"></i></div>
+                <h3>Still Need Help?</h3>
+                <p>If you can't find the answer you're looking for, our support team is here to assist you.</p>
+                <a href="contact.html" class="btn btn-primary">Contact Support</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</a></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+    <script>
+        // Help Center Search Functionality
+        const searchInput = document.getElementById('helpSearchInput');
+        const categoryCards = document.querySelectorAll('.help-category-card');
+        const noResultsMessage = document.getElementById('noResultsMessage');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            let resultsFound = false;
+
+            categoryCards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords');
+                if (keywords.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    resultsFound = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (resultsFound) {
+                noResultsMessage.style.display = 'none';
+            } else {
+                noResultsMessage.style.display = 'block';
+            }
+        });
+
+        // FAQ Accordion Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = question.querySelector('i');
+
+                faqItem.classList.toggle('active');
+
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    answer.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

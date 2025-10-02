@@ -1,0 +1,347 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Routes | Garudyaan</title>
+        <link rel="stylesheet" href="styles-enhanced.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <meta name="theme-color" content="#FF6B35">
+        <meta name="description" content="Live public transport tracking for Tier 2 Indian cities. Track buses, trains, and autos in real-time.">
+        <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles-enhanced.css">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                    <span class="logo-text">Garudyaan</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="track.html" class="nav-link">Track</a>
+                    <a href="routes.html" class="nav-link">Routes</a>
+                    <a href="cities.html" class="nav-link active">Cities</a>
+                    <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-controls">
+                    <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                    <div class="language-selector">
+                        <button class="lang-btn" onclick="toggleLanguageMenu()">
+                            <span class="current-lang">🇺🇸 EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>    
+                            <div class="language-menu" id="languageMenu">
+                                <button onclick="changeLanguage('en')" class="lang-option">
+                                    <span>🇺🇸</span> English
+                                </button>
+                                <button onclick="changeLanguage('hi')" class="lang-option">
+                                    <span>🇮🇳</span> हिन्दी
+                                </button>
+                                <button onclick="changeLanguage('ta')" class="lang-option">
+                                    <span>🇮🇳</span> தமிழ்
+                                </button>
+                                <button onclick="changeLanguage('kn')" class="lang-option">
+                                    <span>🇮🇳</span> ಕನ್ನಡ
+                                </button>
+                                <button onclick="changeLanguage('te')" class="lang-option">
+                                    <span>🇮🇳</span> తెలుగు
+                                </button>
+                                <button onclick="changeLanguage('mr')" class="lang-option">
+                                    <span>🇮🇳</span> मराठी
+                                </button>
+                                <button onclick="changeLanguage('gu')" class="lang-option">
+                                    <span>🇮🇳</span> ગુજરાતી
+                                </button>
+                                <button onclick="changeLanguage('bn')" class="lang-option">
+                                    <span>🇮🇳</span> বাংলা
+                                </button>
+                            </div>
+                        </div>
+                        <button class="favorites-btn" onclick="toggleFavorites()" title="Favorites">
+                            <i class="fas fa-heart"></i>
+                            <span class="favorites-count">0</span>
+                        </button>
+                        <div class="user-info-btn" onclick="toggleUserMenu()">
+                            <div class="user-avatar">U</div>
+                            <span>User</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="user-menu" id="userMenu">
+                                <a href="userpage.html" class="user-menu-item">
+                                    <i class="fas fa-user"></i> Profile
+                                </a>
+                                <a href="login.html" class="user-menu-item">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </a>
+                                <a href="register.html" class="user-menu-item">
+                                    <i class="fas fa-user-plus"></i> Register
+                                </a>
+                                <div class="user-menu-divider"></div>
+                                <button class="user-menu-item" onclick="logout()">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="theme-selector">
+                        <button class="theme-btn" onclick="toggleThemeMenu()">
+                            <span class="current-theme">☀️</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="theme-menu" id="themeMenu">
+                            <button onclick="changeTheme('light')" class="theme-option">
+                                <span>☀️</span> Light
+                            </button>
+                            <button onclick="changeTheme('dark')" class="theme-option">
+                                <span>🌙</span> Dark
+                            </button>
+                            <button onclick="changeTheme('tricolor')" class="theme-option">
+                                <span>🇮🇳</span> Tricolor
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <section class="page-hero">
+            <div class="container">
+                <h1 data-translate="routeDirectory">Route Directory</h1>
+                <p data-translate="routeDirectorySubtitle">Explore all available routes across our supported cities</p>
+            </div>
+        </section>
+
+
+        <section class="routes-section">
+            <div class="container">
+ 
+                <div class="routes-controls">
+                    <div class="search-box">
+                        <input type="text" id="routesSearch" placeholder="Search routes by number, destination, or city..." oninput="filterRoutes()">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="filter-controls">
+                        <select id="cityFilter" onchange="filterRoutes()">
+                            <option value="" data-translate="allCities">All Cities</option>
+                            <option value="indore">Indore</option>
+                            <option value="bhopal">Bhopal</option>
+                            <option value="nagpur">Nagpur</option>
+                            <option value="coimbatore">Coimbatore</option>
+                            <option value="kochi">Kochi</option>
+                            <option value="mysore">Mysore</option>
+                            <option value="jaipur">Jaipur</option>
+                            <option value="lucknow">Lucknow</option>
+                            <option value="ahmedabad">Ahmedabad</option>
+                            <option value="pune">Pune</option>
+                            <option value="chennai">Chennai</option>
+                            <option value="hyderabad">Hyderabad</option>
+                            <option value="surat">Surat</option>
+                            <option value="kanpur">Kanpur</option>
+                        </select>
+                        <select id="typeFilter" onchange="filterRoutes()">
+                            <option value="" data-translate="allTypes">All Types</option>
+                            <option value="bus" data-translate="bus">Bus</option>
+                            <option value="train" data-translate="train">Train</option>
+                            <option value="auto" data-translate="auto">Auto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="routes-table-container">
+                    <table class="routes-table">
+                        <thead>
+                            <tr>
+                                <th data-translate="route">Route</th>
+                                <th data-translate="city">City</th>
+                                <th data-translate="type">Type</th>
+                                <th data-translate="status">Status</th>
+                                <th data-translate="nextArrival">Next Arrival</th>
+                                <th data-translate="fare">Fare</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="routesTableBody">
+                            <!-- Routes will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="route-modal" id="routeModal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 id="modalRouteName">Route Details</h3>
+                            <button class="close-btn" onclick="closeRouteModal()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="route-info">
+                                <div class="route-header">
+                                    <span class="route-number" id="modalRouteNumber">101</span>
+                                    <div class="route-details">
+                                        <h4 id="modalRouteTitle">Rajwada to Airport</h4>
+                                        <p id="modalRouteType">Bus • Indore</p>
+                                    </div>
+                                    <div class="route-status" id="modalRouteStatus">On Time</div>
+                                </div>
+                                <div class="route-timings">
+                                    <div class="timing-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Next Arrival: <strong id="modalNextArrival">5 min</strong></span>
+                                    </div>
+                                    <div class="timing-item">
+                                        <i class="fas fa-sync"></i>
+                                        <span>Frequency: <strong id="modalFrequency">15 min</strong></span>
+                                    </div>
+                                </div>
+                                <div class="route-stops">
+                                    <h5>Route Stops</h5>
+                                    <div class="stops-list" id="modalStopsList">
+                                        <!-- Stops will be populated -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" onclick="closeRouteModal()">Close</button>
+                            <button class="btn btn-primary" onclick="trackRoute()">Track This Route</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                            <span>Garudyaan</span>
+                        </div>
+                        <p>Making public transport accessible and trackable across India</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                            <li><a href="track.html">Track</></li>
+                            <li><a href="routes.html">Routes</a></li>
+                            <li><a href="cities.html">Cities</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="help.html">Help</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="help_center.html">Help Center</a></li>
+                            <li><a href="features_guide.html">Features Guide
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="feedback.html">Feedback</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="config.js"></script>
+        <script src="script-enhanced.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                populateRoutesTable();
+            });
+
+            function populateRoutesTable() {
+                const tableBody = document.getElementById('routesTableBody');
+                let allRoutes = [];
+
+                for (const cityKey in CONFIG.cities) {
+                    const city = CONFIG.cities[cityKey];
+                    city.routes.forEach(route => {
+                        allRoutes.push({ ...route, city: city.name, cityKey: cityKey });
+                    });
+                }
+
+                tableBody.innerHTML = allRoutes.map(route => `
+                    <tr data-route-id="${route.id}" data-city="${route.cityKey}" data-type="${route.type}" data-name="${route.name.toLowerCase()} ${route.number}">
+                        <td>
+                            <div class="route-name-cell">
+                                <span class="route-number-badge">${route.number}</span>
+                                <div>
+                                    <strong>${route.name}</strong>
+                                    <small>${route.from} → ${route.to}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${route.city}</td>
+                        <td>
+                            <span class="route-type-badge ${route.type}">
+                                <i class="fas fa-${route.type === 'auto' ? 'motorcycle' : route.type}"></i> ${route.type}
+                            </span>
+                        </td>
+                        <td><span class="route-status ${route.status}">${route.status}</span></td>
+                        <td>${route.nextArrival}</td>
+                        <td class="fare">${route.fare}</td>
+                        <td><button class="btn btn-sm btn-primary" onclick="openRouteModalById('${route.id}', '${route.cityKey}')">Details</button></td>
+                    </tr>
+                `).join('');
+            }
+
+            function filterRoutes() {
+                const searchTerm = document.getElementById('routesSearch').value.toLowerCase();
+                const cityFilter = document.getElementById('cityFilter').value;
+                const typeFilter = document.getElementById('typeFilter').value;
+                const rows = document.querySelectorAll('#routesTableBody tr');
+
+                rows.forEach(row => {
+                    const name = row.dataset.name;
+                    const city = row.dataset.city;
+                    const type = row.dataset.type;
+
+                    const matchesSearch = name.includes(searchTerm);
+                    const matchesCity = cityFilter === '' || city === cityFilter;
+                    const matchesType = typeFilter === '' || type === typeFilter;
+
+                    if (matchesSearch && matchesCity && matchesType) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            function openRouteModalById(routeId, cityKey) {
+                const city = CONFIG.cities[cityKey];
+                if (!city) return;
+                const route = city.routes.find(r => r.id === routeId);
+                if (route) {
+                    // This function is assumed to exist in script-enhanced.js
+                    // If not, it would need to be defined.
+                    openRouteModal(route, city.name);
+                }
+            }
+        </script>
+
+    </body>
+</html>

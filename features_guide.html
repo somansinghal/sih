@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features Guide | Garudyaan</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="A guide to using the features of Garudyaan, including themes, languages, and favorites.">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <button onclick="changeLanguage('en')" class="lang-option"><span>🇺🇸</span> English</button>
+                        <button onclick="changeLanguage('hi')" class="lang-option"><span>🇮🇳</span> हिन्दी</button>
+                        <button onclick="changeLanguage('ta')" class="lang-option"><span>🇮🇳</span> தமிழ்</button>
+                        <button onclick="changeLanguage('kn')" class="lang-option"><span>🇮🇳</span> ಕನ್ನಡ</button>
+                        <button onclick="changeLanguage('te')" class="lang-option"><span>🇮🇳</span> తెలుగు</button>
+                        <button onclick="changeLanguage('mr')" class="lang-option"><span>🇮🇳</span> मराठी</button>
+                        <button onclick="changeLanguage('gu')" class="lang-option"><span>🇮🇳</span> ગુજરાતી</button>
+                        <button onclick="changeLanguage('bn')" class="lang-option"><span>🇮🇳</span> বাংলা</button>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option"><span>☀️</span> Light</button>
+                        <button onclick="changeTheme('dark')" class="theme-option"><span>🌙</span> Dark</button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option"><span>🇮🇳</span> Tricolor</button>
+                    </div>
+                </div>
+                <div class="user-info-btn" onclick="toggleUserMenu()">
+                    <div class="user-avatar">U</div>
+                    <span>User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="user-menu" id="userMenu">
+                        <a href="userpage.html" class="user-menu-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="login.html" class="user-menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="user-menu-item"><i class="fas fa-user-plus"></i> Register</a>
+                        <div class="user-menu-divider"></div>
+                        <button class="user-menu-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Features Guide</h1>
+            <p>Get the most out of Garudyaan with these tips</p>
+        </div>
+    </section>
+
+    <!-- Features Guide Section -->
+    <section class="features-guide-section">
+        <div class="container">
+            <!-- Themes and Languages -->
+            <div class="guide-item" id="themes-languages">
+                <div class="guide-icon"><i class="fas fa-palette"></i></div>
+                <div class="guide-content">
+                    <h2>Changing Themes & Languages</h2>
+                    <p>Personalize your experience by selecting your preferred theme and language. You can find these options in the top-right corner of the navigation bar on every page.</p>
+                    <div class="guide-steps">
+                        <div class="step">
+                            <h4>1. Locate the Selectors</h4>
+                            <p>Look for the theme (☀️) and language (🇺🇸 EN) buttons in the navigation bar.</p>
+                        </div>
+                        <div class="step">
+                            <h4>2. Open the Menu</h4>
+                            <p>Click on either button to open a dropdown menu with available options.</p>
+                        </div>
+                        <div class="step">
+                            <h4>3. Make Your Selection</h4>
+                            <p>Click on your desired theme (Light, Dark, Tricolor) or language. The website will update instantly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites Modal -->
+            <div class="guide-item" id="favorites-modal">
+                <div class="guide-icon"><i class="fas fa-heart"></i></div>
+                <div class="guide-content">
+                    <h2>Using the Favorites Modal</h2>
+                    <p>Save your most-used routes for quick and easy access. You need to be logged in to use this feature.</p>
+                    <div class="guide-steps">
+                        <div class="step">
+                            <h4>1. Add a Route to Favorites</h4>
+                            <p>When viewing a route, click the "Add to Favorites" button or the heart icon.</p>
+                        </div>
+                        <div class="step">
+                            <h4>2. Access Your Favorites</h4>
+                            <p>Click the heart icon (<i class="fas fa-heart"></i>) in the navigation bar to open the favorites modal.</p>
+                        </div>
+                        <div class="step">
+                            <h4>3. Manage Your Favorites</h4>
+                            <p>From the modal, you can quickly track a route or remove it from your favorites list. Your favorites are also available on your <a href="userpage.html">User Dashboard</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-item" id="sharing-routes">
+                <div class="guide-icon"><i class="fas fa-share-alt"></i></div>
+                <div class="guide-content">
+                    <h2>Sharing Route Information</h2>
+                    <p>Easily share route details with friends and family so they can track a journey or plan a trip.</p>
+                    <div class="guide-steps">
+                        <div class="step">
+                            <h4>1. Select a Route</h4>
+                            <p>First, select a route on the <a href="track.html">Track page</a> to view its details.</p>
+                        </div>
+                        <div class="step">
+                            <h4>2. Find the Share Button</h4>
+                            <p>In the selected route's information panel, you will find a "Share" button.</p>
+                        </div>
+                        <div class="step">
+                            <h4>3. Share or Copy Link</h4>
+                            <p>Clicking the button will open your device's native share menu. If that's not available, it will copy a link to your clipboard that you can paste anywhere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+</body>
+</html>

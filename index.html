@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garudyaan - Live Public Transport Tracking</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="Live public transport tracking for Tier 2 Indian cities. Track buses, trains, and autos in real-time.">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC58DQ3D9UYgr4irZ9Hd1HKGJ8L3lOh4Lg&callback=initMap&libraries=geometry" onerror="handleMapsError()"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+    
+</head>
+<body>
+ 
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link active">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>    
+                        <div class="language-menu" id="languageMenu">
+                            <button onclick="changeLanguage('en')" class="lang-option">
+                                <span>🇺🇸</span> English
+                            </button>
+                            <button onclick="changeLanguage('hi')" class="lang-option">
+                                <span>🇮🇳</span> हिन्दी
+                            </button>
+                            <button onclick="changeLanguage('ta')" class="lang-option">
+                                <span>🇮🇳</span> தமிழ்
+                            </button>
+                            <button onclick="changeLanguage('kn')" class="lang-option">
+                                <span>🇮🇳</span> ಕನ್ನಡ
+                            </button>
+                            <button onclick="changeLanguage('te')" class="lang-option">
+                                <span>🇮🇳</span> తెలుగు
+                            </button>
+                            <button onclick="changeLanguage('mr')" class="lang-option">
+                                <span>🇮🇳</span> मराठी
+                            </button>
+                            <button onclick="changeLanguage('gu')" class="lang-option">
+                                <span>🇮🇳</span> ગુજરાતી
+                            </button>
+                            <button onclick="changeLanguage('bn')" class="lang-option">
+                                <span>🇮🇳</span> বাংলা
+                            </button>
+                        </div>
+                    </div>
+                    <button class="favorites-btn" onclick="toggleFavorites()" title="Favorites">
+                        <i class="fas fa-heart"></i>
+                        <span class="favorites-count">0</span>
+                    </button>
+                    <div class="user-info-btn" onclick="toggleUserMenu()">
+                        <div class="user-avatar">U</div>
+                        <span>User</span>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="user-menu" id="userMenu">
+                            <a href="userpage.html" class="user-menu-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="login.html" class="user-menu-item">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                            <a href="register.html" class="user-menu-item">
+                                <i class="fas fa-user-plus"></i> Register
+                            </a>
+                            <div class="user-menu-divider"></div>
+                            <button class="user-menu-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option">
+                            <span>☀️</span> Light
+                        </button>
+                        <button onclick="changeTheme('dark')" class="theme-option">
+                            <span>🌙</span> Dark
+                        </button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option">
+                            <span>🇮🇳</span> Tricolor
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="floating-bus"></div>
+            <div class="floating-train"></div>
+            <div class="floating-auto"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-translate="heroTitle">Track Public Transport in Real-Time</h1>
+                <p class="hero-subtitle" data-translate="heroSubtitle">Live tracking for buses, trains, and other public transport across Tier 2 Indian cities</p>
+                <div class="hero-slogans">
+                    <p class="slogan">"Your Journey, Our Priority"</p>
+                    <p class="slogan">"Connecting India, One Route at a Time"</p>
+                    <p class="slogan">"Smart Transport for Smart Cities"</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="dynamic-city-count">12</span>
+                        <span class="stat-label" data-translate="cities">Cities</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="dynamic-route-count">50+</span>
+                        <span class="stat-label" data-translate="routes">Routes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Tracking</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('track')">
+                        <i class="fas fa-search"></i>
+                        <span data-translate="startTracking">Start Tracking</span>
+
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('cities')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-translate="selectCity">Select City</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="transport-icons">
+                    <div class="transport-icon bus animate-bounce">
+                        <i class="fas fa-bus"></i>
+                        <span data-translate="bus">Bus</span>
+                    </div>
+                    <div class="transport-icon train animate-bounce-delayed">
+                        <i class="fas fa-train"></i>
+                        <span data-translate="train">Train</span>
+                    </div>
+                    <div class="transport-icon auto animate-bounce-delayed-2">
+                        <i class="fas fa-motorcycle"></i>
+                        <span data-translate="auto">Auto</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="cities" class="cities-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="selectYourCity">Select Your City</h2>
+            <p class="section-subtitle" data-translate="chooseFromSupported">Choose from our supported Indian cities</p>
+            <div class="cities-filter">
+                <button class="filter-btn active" data-region="all">All Regions</button>
+                <button class="filter-btn" data-region="north">North</button>
+                <button class="filter-btn" data-region="south">South</button>
+                <button class="filter-btn" data-region="east">East</button>
+                <button class="filter-btn" data-region="west">West</button>
+                <button class="filter-btn" data-region="central">Central</button>
+            </div>
+            <div class="cities-grid">
+                <div class="city-card" onclick="selectCity('indore')" data-region="central">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Indore</h3>
+                    <p>Madhya Pradesh</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 2.1M</span>
+                        <span id="route-count-indore"><i class="fas fa-route"></i> 4</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('bhopal')" data-region="central">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Bhopal</h3>
+                    <p>Madhya Pradesh</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 1.8M</span>
+                        <span id="route-count-bhopal"><i class="fas fa-route"></i> 2</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('nagpur')" data-region="west">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Nagpur</h3>
+                    <p>Maharashtra</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 2.4M</span>
+                        <span id="route-count-nagpur"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('coimbatore')" data-region="south">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Coimbatore</h3>
+                    <p>Tamil Nadu</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 1.6M</span>
+                        <span id="route-count-coimbatore"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('kochi')" data-region="south">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Kochi</h3>
+                    <p>Kerala</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 2.1M</span>
+                        <span id="route-count-kochi"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('mysore')" data-region="south">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Mysore</h3>
+                    <p>Karnataka</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 1.2M</span>
+                        <span id="route-count-mysore"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('jaipur')" data-region="north">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Jaipur</h3>
+                    <p>Rajasthan</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 3.1M</span>
+                        <span id="route-count-jaipur"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('lucknow')" data-region="north">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Lucknow</h3>
+                    <p>Uttar Pradesh</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 2.8M</span>
+                        <span id="route-count-lucknow"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('ahmedabad')" data-region="west">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Ahmedabad</h3>
+                    <p>Gujarat</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 5.6M</span>
+                        <span id="route-count-ahmedabad"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('pune')" data-region="west">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Pune</h3>
+                    <p>Maharashtra</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 3.1M</span>
+                        <span id="route-count-pune"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('chennai')" data-region="south">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Chennai</h3>
+                    <p>Tamil Nadu</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 7.1M</span>
+                        <span id="route-count-chennai"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('hyderabad')" data-region="south">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Hyderabad</h3>
+                    <p>Telangana</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 6.8M</span>
+                        <span id="route-count-hyderabad"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('surat')" data-region="west">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Surat</h3>
+                    <p>Gujarat</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 6.1M</span>
+                        <span id="route-count-surat"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+                <div class="city-card" onclick="selectCity('kanpur')" data-region="north">
+                    <div class="city-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Kanpur</h3>
+                    <p>Uttar Pradesh</p>
+                    <div class="city-stats">
+                        <span><i class="fas fa-users"></i> 2.9M</span>
+                        <span id="route-count-kanpur"><i class="fas fa-route"></i> 1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="track" class="track-section">
+        <div class="container">
+            <h2 class="section-title">Live Tracking</h2>
+            <div class="track-container">
+                <div class="track-controls">
+                    <div class="search-box">
+                        <input type="text" id="routeSearch" placeholder="Search by route number or destination...">
+                        <button class="search-btn" onclick="searchRoute()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="transport-filters">
+                        <button class="filter-btn active" data-type="all">All</button>
+                        <button class="filter-btn" data-type="bus">Bus</button>
+                        <button class="filter-btn" data-type="train">Train</button>
+                        <button class="filter-btn" data-type="auto">Auto</button>
+                    </div>
+                </div>
+                
+                <div class="tracking-dashboard">
+                    <div class="map-container">
+                        <div id="map" class="map">
+                            <div class="map-placeholder">
+                                <i class="fas fa-map"></i>
+                                <p>Interactive Map Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-info">
+                        <div class="selected-route" id="selectedRoute">
+                            <h3>Select a Route</h3>
+                            <p>Choose a route from the list to see live tracking</p>
+                        </div>
+                        
+                        <div class="route-list" id="routeList">
+                            <!-- Routes will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Garudyaan</h2>
+                    <p>Garudyaan is a comprehensive public transport tracking platform designed specifically for Tier 2 Indian cities. We provide real-time tracking for buses, trains, and other public transport options to help commuters plan their journeys efficiently.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <h4>Real-time Tracking</h4>
+                            <p>Live updates on vehicle locations and arrival times</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-route"></i>
+                            <h4>Route Planning</h4>
+                            <p>Find the best routes and connections for your journey</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Mobile Friendly</h4>
+                            <p>Optimized for mobile devices with responsive design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Auth Section -->
+    <section id="auth" class="contact-section" style="padding-top: 0;">
+        <div class="container">
+            <h2 class="section-title">Get Started</h2>
+            <div class="contact-content">
+                <div class="contact-form-container">
+                    <h3>Quick Access</h3>
+                    <p>Sign in to access your personalized dashboard, save favorite routes, and get personalized recommendations.</p>
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                        <a href="register.html" class="btn btn-secondary btn-full">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </a>
+                    </div>
+                    <div class="auth-features">
+                        <div class="feature-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Save favorite routes</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-bell"></i>
+                            <span>Get arrival notifications</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-history"></i>
+                            <span>View travel history</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+
+    <div id="favoritesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Favorites</h3>
+                <button class="close-btn" onclick="toggleFavorites()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="favoritesList" class="favorites-list">
+                    <p class="no-favorites">No favorite routes yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+    <script src="maps-integration.js"></script>
+</body>
+</html>

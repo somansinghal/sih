@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User page | Garudyaan</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="Live public transport tracking for Tier 2 Indian cities. Track buses, trains, and autos in real-time.">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <button onclick="changeLanguage('en')" class="lang-option">
+                            <span>🇺🇸</span> English
+                        </button>
+                        <button onclick="changeLanguage('hi')" class="lang-option">
+                            <span>🇮🇳</span> हिन्दी
+                        </button>
+                        <button onclick="changeLanguage('ta')" class="lang-option">
+                            <span>🇮🇳</span> தமிழ்
+                        </button>
+                        <button onclick="changeLanguage('kn')" class="lang-option">
+                            <span>🇮🇳</span> ಕನ್ನಡ
+                        </button>
+                        <button onclick="changeLanguage('te')" class="lang-option">
+                            <span>🇮🇳</span> తెలుగు
+                        </button>
+                        <button onclick="changeLanguage('mr')" class="lang-option">
+                            <span>🇮🇳</span> मराठी
+                        </button>
+                        <button onclick="changeLanguage('gu')" class="lang-option">
+                            <span>🇮🇳</span> ગુજરાતી
+                        </button>
+                        <button onclick="changeLanguage('bn')" class="lang-option">
+                            <span>🇮🇳</span> বাংলা
+                        </button>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option">
+                            <span>☀️</span> Light
+                        </button>
+                        <button onclick="changeTheme('dark')" class="theme-option">
+                            <span>🌙</span> Dark
+                        </button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option">
+                            <span>🇮🇳</span> Tricolor
+                        </button>
+                    </div>
+                </div>
+                <button class="favorites-btn" onclick="toggleFavorites()" title="Favorites">
+                    <i class="fas fa-heart"></i>
+                    <span class="favorites-count">0</span>
+                </button>
+                <div class="user-info-btn" onclick="toggleUserMenu()">
+                    <div class="user-avatar">U</div>
+                    <span>User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="user-menu" id="userMenu">
+                        <a href="userpage.html" class="user-menu-item"><i class="fas fa-user"></i> Profile</a>
+                        <a href="login.html" class="user-menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        <a href="register.html" class="user-menu-item"><i class="fas fa-user-plus"></i> Register</a>
+                        <div class="user-menu-divider"></div>
+                        <button class="user-menu-item" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- User Dashboard -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 data-translate="userDashboardTitle">User Dashboard</h1>
+            <p data-translate="userDashboardSubtitle">Welcome back! Manage your account and track your journeys</p>
+        </div>
+    </section>
+
+    <section class="user-dashboard">
+        <div class="container">
+            <div class="dashboard-layout">
+                <aside class="dashboard-sidebar">
+                    <div class="sidebar-profile">
+                        <div class="profile-avatar"><i class="fas fa-user"></i></div>
+                        <h4 id="userName">Soman Singhal</h4>
+                        <p id="userEmail">somansinghal@example.com</p>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <a href="#overview" class="sidebar-link active" data-target="overview" data-translate="overview"><i class="fas fa-tachometer-alt"></i> Overview</a>
+                        <a href="#profile" class="sidebar-link" data-target="profile" data-translate="profileSettings"><i class="fas fa-user-cog"></i> Profile Settings</a>
+                        <a href="#favorites" class="sidebar-link" data-target="favorites" data-translate="myFavorites"><i class="fas fa-heart"></i> My Favorites</a>
+                        <a href="#notifications" class="sidebar-link" data-target="notifications" data-translate="notifications"><i class="fas fa-bell"></i> Notifications</a>
+                        <a href="settings.html" class="sidebar-link" data-translate="security"><i class="fas fa-shield-alt"></i> Security</a>
+                    </nav>
+                </aside>
+
+                <main class="dashboard-content">
+                    <!-- Overview Section -->
+                    <div id="overview" class="dashboard-tab active">
+                        <div class="dashboard-grid">
+                            <div class="dashboard-card stats-card">
+                                <div class="card-header"><h3 data-translate="yourStats">Your Stats</h3></div>
+                                <div class="stats-chart">
+                                    <div class="bar" style="height: 60%;" data-label="Routes Tracked"><span>24</span></div>
+                                    <div class="bar" style="height: 40%;" data-label="Favorites"><span>8</span></div>
+                                    <div class="bar" style="height: 80%;" data-label="Hours Saved"><span>156</span></div>
+                                    <div class="bar" style="height: 25%;" data-label="Cities Visited"><span>3</span></div>
+                                </div>
+                            </div>
+                            <div class="dashboard-card activity-card">
+                                <div class="card-header"><h3 data-translate="recentActivity">Recent Activity</h3></div>
+                                <div class="activity-list">
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-bus"></i></div>
+                                        <div class="activity-details">
+                                            <h5 data-translate="trackedRoute">Tracked Route 101</h5>
+                                            <p>Rajwada to Airport - Indore</p>
+                                            <span class="activity-time" data-translate="twoHoursAgo">2 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon"><i class="fas fa-heart"></i></div>
+                                        <div class="activity-details">
+                                            <h5 data-translate="addedToFavorites">Added to Favorites</h5>
+                                            <p>Route 102 - Railway Station to Bypass</p>
+                                            <span class="activity-time" data-translate="oneDayAgo">1 day ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class="fas fa-bell"></i>
+                                        </div>
+                                        <div class="activity-details">
+                                            <h5 data-translate="receivedNotification">Received Notification</h5>
+                                            <p>Route 201 arriving in 5 minutes</p>
+                                            <span class="activity-time" data-translate="twoDaysAgo">2 days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dashboard-card actions-card">
+                                <div class="card-header">
+                                    <h3 data-translate="quickActions">Quick Actions</h3>
+                                </div>
+                                <div class="actions-grid">
+                                    <button class="action-btn" onclick="window.location.href='track.html'">
+                                        <i class="fas fa-search"></i>
+                                        <span data-translate="trackRoute">Track Route</span>
+                                    </button>
+                                    <button class="action-btn" onclick="window.location.href='cities.html'">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span data-translate="browseCities">Browse Cities</span>
+                                    </button>
+                                    <button class="action-btn" onclick="window.location.href='routes.html'">
+                                        <i class="fas fa-route"></i>
+                                        <span data-translate="viewRoutes">View Routes</span>
+                                    </button>
+                                    <button class="action-btn" onclick="window.location.href='settings.html'">
+                                        <i class="fas fa-cog"></i>
+                                        <span data-translate="settings">Settings</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Settings Section -->
+                    <div id="profile" class="dashboard-tab">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 data-translate="profileInformation">Profile Information</h3>
+                                <button id="editProfileBtn" class="btn btn-sm btn-secondary" data-translate="edit">Edit</button>
+                            </div>
+                            <div class="profile-form-container">
+                                <form id="profileForm">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="profileName" data-translate="fullName">Full Name</label>
+                                            <input type="text" id="profileName" value="Soman Singhal" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="profileEmail" data-translate="emailAddress">Email Address</label>
+                                            <input type="email" id="profileEmail" value="somansinghal@example.com" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="profilePhone" data-translate="phoneNumber">Phone Number</label>
+                                            <input type="tel" id="profilePhone" value="+91 98765 43210" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="profileCity" data-translate="preferredCity">Preferred City</label>
+                                            <select id="profileCity" disabled>
+                                                <option value="indore" selected>Indore</option>
+                                                <option value="bhopal">Bhopal</option>
+                                                <option value="jaipur">Jaipur</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions" style="display: none;">
+                                        <button type="button" id="cancelEditBtn" class="btn btn-secondary" data-translate="cancel">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" data-translate="saveChanges">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorites Section -->
+                    <div id="favorites" class="dashboard-tab">
+                        <div class="dashboard-card">
+                            <div class="card-header"><h3 data-translate="myFavoriteRoutes">My Favorite Routes</h3></div>
+                            <div class="favorites-list">
+                                <div class="favorite-route">
+                                    <div class="route-info">
+                                        <span class="route-number">101</span>
+                                        <div class="route-details"><h5>Rajwada to Airport</h5><p>Indore • Bus</p></div>
+                                    </div>
+                                    <div class="route-status on-time" data-translate="onTime">On Time</div>
+                                </div>
+                                <div class="favorite-route">
+                                    <div class="route-info">
+                                        <span class="route-number">102</span>
+                                        <div class="route-details"><h5>Railway Station to Bypass</h5><p>Indore • Bus</p></div>
+                                    </div>
+                                    <div class="route-status delayed" data-translate="delayed">Delayed</div>
+                                </div>
+                                <div class="favorite-route">
+                                    <div class="route-info">
+                                        <span class="route-number">201</span>
+                                        <div class="route-details"><h5>Local Train Route</h5><p>Indore • Train</p></div>
+                                    </div>
+                                    <div class="route-status on-time" data-translate="onTime">On Time</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Section -->
+                    <div id="notifications" class="dashboard-tab">
+                        <div class="dashboard-card">
+                            <div class="card-header"><h3 data-translate="notifications">Notifications</h3><button class="btn btn-sm btn-secondary" data-translate="markAllRead">Mark All Read</button></div>
+                            <div class="notifications-list">
+                                 <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-bell"></i></div>
+                                    <div class="notification-content">
+                                        <h5 data-translate="routeUpdate">Route Update</h5>
+                                        <p>Route 101 schedule has been updated</p>
+                                        <span class="notification-time" data-translate="fiveMinAgo">5 minutes ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h5 data-translate="newFeature">New Feature</h5>
+                                        <p>Real-time notifications are now available</p>
+                                        <span class="notification-time" data-translate="oneHourAgo">1 hour ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p data-translate="makingPublicTransport">Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-translate="quickLinks">Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html" data-translate="home">Home</a></li>
+                        <li><a href="about.html" data-translate="about">About</a></li>
+                        <li><a href="fare_calculator.html" data-translate="fareCalculator">Fare Calculator</a></li>
+                        <li><a href="track.html" data-translate="track">Track</a></li>
+                        <li><a href="routes.html" data-translate="routes">Routes</a></li>
+                        <li><a href="cities.html" data-translate="cities">Cities</a></li>
+                        <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                        <li><a href="help.html" data-translate="help">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 data-translate="support">Support</h3>
+                    <ul>
+                        <li><a href="help_center.html" data-translate="helpCenter">Help Center</a></li>
+                        <li><a href="features_guide.html" data-translate="featuresGuide">Features Guide</a></li>
+                        <li><a href="contact.html" data-translate="contactUs">Contact Us</a></li>
+                        <li><a href="feedback.html" data-translate="feedback">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav .sidebar-link');
+            const dashboardTabs = document.querySelectorAll('.dashboard-tab');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Only handle internal tabs, let external links navigate normally
+                    if (link.dataset.target) {
+                        e.preventDefault();
+                        const targetId = link.dataset.target;
+
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+
+                        dashboardTabs.forEach(tab => {
+                            if (tab.id === targetId) {
+                                tab.classList.add('active');
+                            } else {
+                                tab.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+
+            const editBtn = document.getElementById('editProfileBtn');
+            const cancelBtn = document.getElementById('cancelEditBtn');
+            const profileForm = document.getElementById('profileForm');
+            const formActions = profileForm.querySelector('.form-actions');
+            const inputs = profileForm.querySelectorAll('input, select');
+
+            editBtn.addEventListener('click', () => {
+                inputs.forEach(input => input.disabled = false);
+                formActions.style.display = 'flex';
+                editBtn.style.display = 'none';
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                inputs.forEach(input => input.disabled = true);
+                formActions.style.display = 'none';
+                editBtn.style.display = 'block';
+                // Here you would reset to original values if needed
+                // For a real app, you'd store original values and restore them
+                document.getElementById('profileName').value = "Soman Singhal";
+                document.getElementById('profileEmail').value = "somansinghal@example.com";
+                document.getElementById('profilePhone').value = "+91 98765 43210";
+                document.getElementById('profileCity').value = "indore";
+            });
+
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showNotification('Profile updated successfully!', 'success');
+                inputs.forEach(input => input.disabled = true);
+                formActions.style.display = 'none';
+                editBtn.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

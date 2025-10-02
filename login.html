@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Garudyaan</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="Login to Garudyaan - Live public transport tracking">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-menu" id="languageMenu">
+                        <button onclick="changeLanguage('en')" class="lang-option">
+                            <span>🇺🇸</span> English
+                        </button>
+                        <button onclick="changeLanguage('hi')" class="lang-option">
+                            <span>🇮🇳</span> हिन्दी
+                        </button>
+                        <button onclick="changeLanguage('ta')" class="lang-option">
+                            <span>🇮🇳</span> தமிழ்
+                        </button>
+                        <button onclick="changeLanguage('kn')" class="lang-option">
+                            <span>🇮🇳</span> ಕನ್ನಡ
+                        </button>
+                        <button onclick="changeLanguage('te')" class="lang-option">
+                            <span>🇮🇳</span> తెలుగు
+                        </button>
+                        <button onclick="changeLanguage('mr')" class="lang-option">
+                            <span>🇮🇳</span> मराठी
+                        </button>
+                        <button onclick="changeLanguage('gu')" class="lang-option">
+                            <span>🇮🇳</span> ગુજરાતી
+                        </button>
+                        <button onclick="changeLanguage('bn')" class="lang-option">
+                            <span>🇮🇳</span> বাংলা
+                        </button>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option">
+                            <span>☀️</span> Light
+                        </button>
+                        <button onclick="changeTheme('dark')" class="theme-option">
+                            <span>🌙</span> Dark
+                        </button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option">
+                            <span>🇮🇳</span> Tricolor
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to your Garudyaan account</p>
+                </div>
+                
+                <div class="auth-form-container">
+                    <form class="auth-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required placeholder="Enter your password">
+                            <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </button>
+                        
+                        <div class="auth-divider">
+                            <span>or</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button type="button" class="btn btn-social btn-google">
+                                <i class="fab fa-google"></i>
+                                Continue with Google
+                            </button>
+                            <button type="button" class="btn btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                Continue with Facebook
+                            </button>
+                        </div>
+                        
+                        <div class="auth-footer">
+                            <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</a></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+    <script>
+        // Login form handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                showNotification('Please fill in all fields', 'warning');
+                return;
+            }
+            
+            showLoading();
+            
+            // Simulate login process
+            setTimeout(() => {
+                hideLoading();
+                showNotification('Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'userpage.html';
+                }, 1500);
+            }, 2000);
+        });
+        
+        // Password toggle functionality
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const toggle = input.nextElementSibling;
+            const icon = toggle.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Social login handlers
+        document.querySelector('.btn-google').addEventListener('click', function() {
+            showNotification('Google login coming soon!', 'info');
+        });
+        
+        document.querySelector('.btn-facebook').addEventListener('click', function() {
+            showNotification('Facebook login coming soon!', 'info');
+        });
+    </script>
+</body>
+</html>

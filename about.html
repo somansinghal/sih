@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Garudyaan</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="description" content="Live public transport tracking for Tier 2 Indian cities. Track buses, trains, and autos in real-time.">
+    <link rel="icon" type="image/svg+xml" href="Garunyaan.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                <span class="logo-text">Garudyaan</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="track.html" class="nav-link">Track</a>
+                <a href="routes.html" class="nav-link">Routes</a>
+                <a href="cities.html" class="nav-link">Cities</a>
+                <a href="fare_calculator.html" class="nav-link">Fare Calculator</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-controls">
+                <div id="navClock" class="nav-clock" aria-label="Current time"></div>
+                <div class="language-selector">
+                    <button class="lang-btn" onclick="toggleLanguageMenu()">
+                        <span class="current-lang">🇺🇸 EN</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>    
+                        <div class="language-menu" id="languageMenu">
+                            <button onclick="changeLanguage('en')" class="lang-option">
+                                <span>🇺🇸</span> English
+                            </button>
+                            <button onclick="changeLanguage('hi')" class="lang-option">
+                                <span>🇮🇳</span> हिन्दी
+                            </button>
+                            <button onclick="changeLanguage('ta')" class="lang-option">
+                                <span>🇮🇳</span> தமிழ்
+                            </button>
+                            <button onclick="changeLanguage('kn')" class="lang-option">
+                                <span>🇮🇳</span> ಕನ್ನಡ
+                            </button>
+                            <button onclick="changeLanguage('te')" class="lang-option">
+                                <span>🇮🇳</span> తెలుగు
+                            </button>
+                            <button onclick="changeLanguage('mr')" class="lang-option">
+                                <span>🇮🇳</span> मराठी
+                            </button>
+                            <button onclick="changeLanguage('gu')" class="lang-option">
+                                <span>🇮🇳</span> ગુજરાતી
+                            </button>
+                            <button onclick="changeLanguage('bn')" class="lang-option">
+                                <span>🇮🇳</span> বাংলা
+                            </button>
+                        </div>
+                    </div>
+                    <button class="favorites-btn" onclick="toggleFavorites()" title="Favorites">
+                        <i class="fas fa-heart"></i>
+                        <span class="favorites-count">0</span>
+                    </button>
+                    <div class="user-info-btn" onclick="toggleUserMenu()">
+                        <div class="user-avatar">U</div>
+                        <span>User</span>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="user-menu" id="userMenu">
+                            <a href="userpage.html" class="user-menu-item"> <i class="fas fa-user"></i> Profile </a> <a href="login.html" class="user-menu-item"> <i class="fas fa-sign-in-alt"></i> Login </a> <a href="register.html" class="user-menu-item"> <i class="fas fa-user-plus"></i> Register </a>
+                            <div class="user-menu-divider"></div>
+                            <button class="user-menu-item" onclick="logout()"> <i class="fas fa-sign-out-alt"></i> Logout </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-selector">
+                    <button class="theme-btn" onclick="toggleThemeMenu()">
+                        <span class="current-theme">☀️</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="theme-menu" id="themeMenu">
+                        <button onclick="changeTheme('light')" class="theme-option">
+                            <span>☀️</span> Light
+                        </button>
+                        <button onclick="changeTheme('dark')" class="theme-option">
+                            <span>🌙</span> Dark
+                        </button>
+                        <button onclick="changeTheme('tricolor')" class="theme-option">
+                            <span>🇮🇳</span> Tricolor
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 data-translate="aboutGarudyaan">About Garudyaan</h1>
+            <p data-translate="aboutSubtitle">Revolutionizing public transport tracking across India</p>
+            <div class="hero-slogans">
+                <p class="slogan" data-translate="slogan1">"Empowering Every Journey"</p>
+                <p class="slogan" data-translate="slogan2">"Technology Meets Transportation"</p>
+                <p class="slogan" data-translate="slogan3">"Building Smart Cities, One Route at a Time"</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2 data-translate="ourMission">Our Mission</h2>
+                    <p data-translate="missionText">To make public transport accessible, reliable, and trackable for every Indian citizen. We believe that efficient public transportation is the backbone of a developing nation, and technology should make it easier for people to navigate their cities.</p>
+                    
+                    <h3 data-translate="whyGarudyaan">Why Garudyaan?</h3>
+                    <p data-translate="whyGarudyaanText">The name "Garudyaan" is inspired by Garuda, the divine eagle in Hindu mythology known for its speed and reliability. Just like Garuda, our platform ensures fast and dependable transport tracking services.</p>
+                </div>
+                <div class="mission-image">
+                    <div class="mission-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-city"></i>
+                            <h4 id="about-city-count">12+ Cities</h4>
+                            <p>Covering major Tier 2 cities</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-route"></i>
+                            <h4 id="about-route-count">50+ Routes</h4>
+                            <p>Active transport routes</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <h4>1M+ Users</h4>
+                            <p>Trusted by commuters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="keyFeatures">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 data-translate="realTimeTracking">Real-time Tracking</h3>
+                    <p data-translate="realTimeDescription">Live updates on vehicle locations and arrival times with 99.9% accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 data-translate="multiLanguageSupport">Multi-language Support</h3>
+                    <p data-translate="multiLanguageDescription">Available in Hindi, Tamil, Telugu, Bengali, and more regional languages</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 data-translate="mobileOptimized">Mobile Optimized</h3>
+                    <p data-translate="mobileOptimizedDescription">Responsive design that works perfectly on all devices and screen sizes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 data-translate="favoritesSystem">Favorites System</h3>
+                    <p data-translate="favoritesSystemDescription">Save your frequently used routes for quick access and tracking</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 data-translate="themeCustomization">Theme Customization</h3>
+                    <p data-translate="themeCustomizationDescription">Choose from Light, Dark, or Indian Tricolor themes for better experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 data-translate="smartNotifications">Smart Notifications</h3>
+                    <p data-translate="smartNotificationsDescription">Get notified about route updates, delays, and arrival times</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="ourTeam">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>xxx</h3>
+                    <p>xxx</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>yyyy</h3>
+                    <p>yyy</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>zzzz</h3>
+                    <p>zzzz</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="techStack">Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>PWA</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-cloud"></i>
+                    <span>Cloud</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <span>Database</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</a></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+</body>
+</html>
+                    <div class="theme-selector">
+                        <button class="theme-btn" onclick="toggleThemeMenu()">
+                            <span class="current-theme">☀️</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="theme-menu" id="themeMenu">
+                            <button onclick="changeTheme('light')" class="theme-option">
+                                <span>☀️</span> Light
+                            </button>
+                            <button onclick="changeTheme('dark')" class="theme-option">
+                                <span>🌙</span> Dark
+                            </button>
+                            <button onclick="changeTheme('tricolor')" class="theme-option">
+                                <span>🇮🇳</span> Tricolor
+                            </button>
+                        </div>
+                    </div>
+                    <button class="favorites-btn" onclick="toggleFavorites()" title="Favorites">
+                        <i class="fas fa-heart"></i>
+                        <span class="favorites-count">0</span>
+                    </button>
+                    <div class="user-info-btn" onclick="toggleUserMenu()">
+                        <div class="user-avatar">U</div>
+                        <span>User</span>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="user-menu" id="userMenu">
+                            <a href="userpage.html" class="user-menu-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="login.html" class="user-menu-item">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                            <a href="register.html" class="user-menu-item">
+                                <i class="fas fa-user-plus"></i> Register
+                            </a>
+                            <div class="user-menu-divider"></div>
+                            <button class="user-menu-item" onclick="logout()">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 data-translate="aboutGarudyaan">About Garudyaan</h1>
+            <p data-translate="aboutSubtitle">Revolutionizing public transport tracking across India</p>
+            <div class="hero-slogans">
+                <p class="slogan" data-translate="slogan1">"Empowering Every Journey"</p>
+                <p class="slogan" data-translate="slogan2">"Technology Meets Transportation"</p>
+                <p class="slogan" data-translate="slogan3">"Building Smart Cities, One Route at a Time"</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h2 data-translate="ourMission">Our Mission</h2>
+                    <p data-translate="missionText">To make public transport accessible, reliable, and trackable for every Indian citizen. We believe that efficient public transportation is the backbone of a developing nation, and technology should make it easier for people to navigate their cities.</p>
+                    
+                    <h3 data-translate="whyGarudyaan">Why Garudyaan?</h3>
+                    <p data-translate="whyGarudyaanText">The name "Garudyaan" is inspired by Garuda, the divine eagle in Hindu mythology known for its speed and reliability. Just like Garuda, our platform ensures fast and dependable transport tracking services.</p>
+                </div>
+                <div class="mission-image">
+                    <div class="mission-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-city"></i>
+                            <h4 id="about-city-count">12+ Cities</h4>
+                            <p>Covering major Tier 2 cities</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-route"></i>
+                            <h4 id="about-route-count">50+ Routes</h4>
+                            <p>Active transport routes</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <h4>1M+ Users</h4>
+                            <p>Trusted by commuters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="keyFeatures">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 data-translate="realTimeTracking">Real-time Tracking</h3>
+                    <p data-translate="realTimeDescription">Live updates on vehicle locations and arrival times with 99.9% accuracy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 data-translate="multiLanguageSupport">Multi-language Support</h3>
+                    <p data-translate="multiLanguageDescription">Available in Hindi, Tamil, Telugu, Bengali, and more regional languages</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 data-translate="mobileOptimized">Mobile Optimized</h3>
+                    <p data-translate="mobileOptimizedDescription">Responsive design that works perfectly on all devices and screen sizes</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 data-translate="favoritesSystem">Favorites System</h3>
+                    <p data-translate="favoritesSystemDescription">Save your frequently used routes for quick access and tracking</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 data-translate="themeCustomization">Theme Customization</h3>
+                    <p data-translate="themeCustomizationDescription">Choose from Light, Dark, or Indian Tricolor themes for better experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 data-translate="smartNotifications">Smart Notifications</h3>
+                    <p data-translate="smartNotificationsDescription">Get notified about route updates, delays, and arrival times</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="ourTeam">Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>xxx</h3>
+                    <p>xxx</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>yyyy</h3>
+                    <p>yyy</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>zzzz</h3>
+                    <p>zzzz</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="techStack">Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>PWA</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-cloud"></i>
+                    <span>Cloud</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <span>Database</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="Garunyaan.png" alt="Garudyaan Logo" class="logo-img">
+                        <span>Garudyaan</span>
+                    </div>
+                    <p>Making public transport accessible and trackable across India</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="fare_calculator.html">Fare Calculator</a></li>
+                        <li><a href="track.html">Track</a></li>
+                        <li><a href="routes.html">Routes</a></li>
+                        <li><a href="cities.html">Cities</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="help_center.html">Help Center</a></li>
+                        <li><a href="features_guide.html">Features Guide</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Garudyaan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script-enhanced.js"></script>
+</body>
+</html>
