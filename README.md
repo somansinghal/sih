@@ -3,7 +3,7 @@
 A modern, responsive website for real-time tracking of public transport in Tier 2 Indian cities.
 
 # Live Link
-https://garudyaan.netlify.app
+https://garudyaan.vercel.app
 
 ## Features
 
